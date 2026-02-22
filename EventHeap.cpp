@@ -1,0 +1,66 @@
+#include "EventHeap.hpp"
+
+EventHeap::EventHeap() {
+    size = 0;
+    capacity = 200;
+}
+
+bool EventHeap::isEmpty() const {
+    return size == 0;
+}
+
+void EventHeap::insert(const Event& e) {
+    heap[++size] = e;
+    percolateUp(size);
+}
+
+Event EventHeap::removeMin() {
+    if (isEmpty()) {return Event();}
+    Event min = heap[1];
+    heap[1] = heap[size--];
+    percolateDown(1);
+    return min;
+}
+
+void EventHeap::percolateUp(int index) {
+    if(index == 1) {return;}
+    int parent = index/2;
+    if(heap[parent].time > heap[index].time) {
+        swap(parent, index);
+        percolateUp(parent);
+    }
+}
+
+void EventHeap::percolateDown(int index){
+    int left = index*2;
+    int right = index*2 + 1;
+    if(left > size) {return;} // no children
+
+    //find smaller child
+    int smaller = left;
+    if(right <= size && heap[right].time < heap[left].time) {
+        smaller = right;
+    }
+    //check if current is already smaller
+    if(heap[index].time <= heap[smaller].time) {return;}
+    
+    swap(index, smaller);
+    percolateDown(smaller);
+}
+
+void EventHeap::swap(int first, int second) {
+    Event temp = heap[first];
+    heap[first] = heap[second];
+    heap[second] = temp;
+}
+
+
+
+
+
+
+
+
+
+
+
