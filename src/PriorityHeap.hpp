@@ -1,9 +1,9 @@
-#ifndef EVENTHEAP_HPP
-#define EVENTHEAP_HPP
+#ifndef PRIORITYHEAP_HPP
+#define PRIORITYHEAP_HPP
 
 #include "Event.hpp"
 
-class EventHeap {
+class PriorityHeap {
     private:
         Event heap[200];
         int size;
@@ -12,7 +12,7 @@ class EventHeap {
         void percolateDown(int index);
         void swap(int first, int second);
     public:
-        EventHeap();
+        PriorityHeap();
         bool isEmpty() const;
         void insert(const Event& e);
         Event removeMin();

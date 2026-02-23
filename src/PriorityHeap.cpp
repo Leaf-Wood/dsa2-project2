@@ -1,20 +1,21 @@
-#include "EventHeap.hpp"
+#include "PriorityHeap.hpp"
 
-EventHeap::EventHeap() {
+PriorityHeap::PriorityHeap() {
     size = 0;
-    capacity = 200;
+    capacity = 199;
 }
 
-bool EventHeap::isEmpty() const {
+bool PriorityHeap::isEmpty() const {
     return size == 0;
 }
 
-void EventHeap::insert(const Event& e) {
+void PriorityHeap::insert(const Event& e) {
+    if(size >= capacity) {return;}
     heap[++size] = e;
     percolateUp(size);
 }
 
-Event EventHeap::removeMin() {
+Event PriorityHeap::removeMin() {
     if (isEmpty()) {return Event();}
     Event min = heap[1];
     heap[1] = heap[size--];
@@ -22,7 +23,7 @@ Event EventHeap::removeMin() {
     return min;
 }
 
-void EventHeap::percolateUp(int index) {
+void PriorityHeap::percolateUp(int index) {
     if(index == 1) {return;}
     int parent = index/2;
     if(heap[parent].time > heap[index].time) {
@@ -31,7 +32,7 @@ void EventHeap::percolateUp(int index) {
     }
 }
 
-void EventHeap::percolateDown(int index){
+void PriorityHeap::percolateDown(int index){
     int left = index*2;
     int right = index*2 + 1;
     if(left > size) {return;} // no children
@@ -48,19 +49,8 @@ void EventHeap::percolateDown(int index){
     percolateDown(smaller);
 }
 
-void EventHeap::swap(int first, int second) {
+void PriorityHeap::swap(int first, int second) {
     Event temp = heap[first];
     heap[first] = heap[second];
     heap[second] = temp;
 }
-
-
-
-
-
-
-
-
-
-
-

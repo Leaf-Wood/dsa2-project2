@@ -7,11 +7,13 @@ class FIFOQueue {
     private:
         Customer* front;
         Customer* back;
+        int size;
     public:
         FIFOQueue();
         bool isEmpty() const;
         void enqueue(Customer* customer);
         Customer* dequeue();
+        int getSize() const;
 };
 
 #endif

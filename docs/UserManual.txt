@@ -1,0 +1,11 @@
+This program simulates a queue using an event driven simulation, and also computes the analytical model and prints both results.
+It reads from an input file containing the parameters:
+- λ (arrival rate)
+- μ (service rate)
+- M (number of servers)
+- numEvents (number of customers to simulate)
+
+# Instructions:
+1. In main.cpp, change the file name in the first line 'INPUT_FILE = "test1.txt";' to change the file the program reads. The test files are located in the tests/ folder.
+2. Compile program using 'make' in the terminal
+3. Run program using './main'
